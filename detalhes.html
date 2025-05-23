@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da Tarefa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow" id="detalhes-tarefa">
+    <h1 class="text-2xl font-bold mb-4">Detalhes da Tarefa</h1>
+    <div id="conteudo-tarefa" class="space-y-2"></div>
+    <button onclick="window.close()" class="mt-4 bg-gray-400 text-white px-4 py-2 rounded">Voltar</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const tarefaJson = params.get('tarefa');
+
+    if (tarefaJson) {
+      const tarefa = JSON.parse(decodeURIComponent(tarefaJson));
+      const container = document.getElementById("conteudo-tarefa");
+
+      const formatar = (label, valor) => {
+        const p = document.createElement("p");
+        p.innerHTML = `<strong>${label}:</strong> ${valor}`;
+        return p;
+      };
+
+      container.appendChild(formatar("Título", tarefa.titulo));
+      container.appendChild(formatar("Data da tarefa", tarefa.data));
+      container.appendChild(formatar("Comentário", tarefa.comentario));
+      container.appendChild(formatar("Prioridade", tarefa.prioridade));
+      container.appendChild(formatar("Data de criação", tarefa.dataCriacao));
+      container.appendChild(formatar("Notificação", tarefa.notificacao ? "Sim" : "Não"));
+
+      const hoje = new Date().toISOString().split('T')[0];
+      const status = document.createElement("p");
+      status.innerHTML = `<strong>Status:</strong> ${tarefa.data < hoje ? "Atrasada" : "No prazo"}`;
+      container.appendChild(status);
+    }
+  </script>
+</body>
+
+</html>

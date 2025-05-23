@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tarefas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Lista de Tarefas</h1>
+    <form id="form-tarefa" class="space-y-4">
+      <input type="text" id="titulo" placeholder="Título" class="w-full p-2 border rounded">
+      <input type="date" id="data" class="w-full p-2 border rounded">
+      <textarea id="comentario" placeholder="Comentário" class="w-full p-2 border rounded"></textarea>
+      <select id="prioridade" class="w-full p-2 border rounded">
+        <option value="ALTA">Alta</option>
+        <option value="MEDIA">Média</option>
+        <option value="BAIXA">Baixa</option>
+      </select>
+      <label class="flex items-center">
+        <input type="checkbox" id="notificacao" class="mr-2"> Notificação
+      </label>
+      <div class="flex gap-2">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Adicionar</button>
+        <button type="button" id="cancelar" class="bg-gray-400 text-white px-4 py-2 rounded">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="lista-tarefas" class="max-w-xl mx-auto mt-6 space-y-4"></div>
+</body>
+
+</html>
+
